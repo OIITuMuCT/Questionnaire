@@ -1,0 +1,75 @@
+    <!-- my_template.html -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="button" id="show-field-btn">Показать поле</button>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        document.getElementById('show-field-btn').addEventListener('click', function() {
+            var hiddenField = document.querySelector('.hidden-field');
+            if (hiddenField.style.display === 'none') {
+                hiddenField.style.display = 'block'; // Или 'inline', 'flex' в зависимости от нужного отображения
+            } else {
+                hiddenField.style.display = 'none';
+            }
+        });
+    </script>
+            <form id="myForm">
+            <div id="fieldsContainer">
+                <!-- Первое поле -->
+                <input type="text" name="field_1">
+            </div>
+            <button type="button" onclick="addField()">Добавить поле</button>
+            <button type="submit">Отправить</button>
+        </form>
+            <script>
+            let fieldCount = 1;
+            function addField() {
+                fieldCount++;
+                const container = document.getElementById('fieldsContainer');
+                const newField = document.createElement('input');
+                newField.type = 'text';
+                newField.name = `field_${fieldCount}`; // Динамическое имя поля
+                newField.placeholder = `Поле ${fieldCount}`;
+                container.appendChild(newField);
+            }
+        </script>
+
+
+    <div>
+            <h2>Example 1</h2>
+    <button id="addFieldBtn">Добавить поле</button>
+    <div id="inputsWrapper">
+      <!-- Здесь будут появляться новые поля -->
+    </div>
+    <script src="script.js"></script>
+    </div>
+<script>
+const addFieldBtn = document.getElementById("addFieldBtn");
+const inputsWrapper = document.getElementById("inputsWrapper");
+
+addFieldBtn.addEventListener("click", function () {
+  // Создаем новый элемент поля ввода
+  const newInput = document.createElement("input");
+  newInput.type = "text"; // Устанавливаем тип поля
+  newInput.placeholder = "Новое поле"; // Устанавливаем плейсхолдер
+
+  // Создаем div для обертки нового поля (для лучшей стилизации и группировки)
+  const inputDiv = document.createElement("div");
+  inputDiv.className = "input-container"; // Добавляем класс для стилей
+  inputDiv.appendChild(newInput); // Добавляем само поле ввода в div
+
+  // Добавляем div с новым полем ввода в wrapper
+  inputsWrapper.appendChild(inputDiv);
+});
+</script>
+
+<h3>Моя форма</h3>
+    <!-- templates/manage_fields.html -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="add_field">Добавить поле</button>
+    </form>

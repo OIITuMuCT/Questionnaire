@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Мои анкеты{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>My Questionnaire</h1>
+    <div>
+        <ul>
+        {% if polls %}
+        {% for poll in polls %}
+        <a href="{% url "polls:polls_detail" poll.id%}">
+            <h2>{{ poll.title }} </h2>
+    
+        </a>
+            <ul>
+                <li>
+                    {% if poll %}{{poll.question}}{% else %} <button type="submit">Добавить вопрос</button> {% endif %}
+                </li>
+                <li>
+                    <button type="submit">Добавить вопрос</button>
+                </li>
+            </ul>
+        {% endfor %}
+        {% else %} 
+        <h2>Create Questionnaire</h2> 
+        {% endif %}
+    </ul>
+    </div>
+
+</div>
+
+{% endblock %}
